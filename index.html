@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#241a18">
+  <meta name="description" content="오래된 유럽의 살롱을 닮은 카페, 카페 벨로라에서 천천히 흐르는 한 잔의 시간을 만나보세요.">
+  <title>카페 벨로라 | A Salon for Slow Hours</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #271d19;
+      --wine: #642c32;
+      --wine-deep: #3b2022;
+      --gold: #a9824d;
+      --paper: #f3ecdf;
+      --paper-light: #fbf8f1;
+      --muted: #766b5e;
+      --serif: "Cormorant Garamond", "Noto Serif KR", serif;
+      --korean: "Noto Serif KR", serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--korean);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+    button { color: inherit; }
+    .topline {
+      height: 7px;
+      background: repeating-linear-gradient(90deg, var(--wine) 0 34px, var(--gold) 34px 38px, var(--wine-deep) 38px 72px);
+    }
+    .site-header {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 88px;
+      padding: 18px clamp(22px, 7vw, 104px);
+      border-bottom: 1px solid rgba(92, 63, 43, .2);
+      background: var(--paper-light);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-mark {
+      display: grid;
+      width: 43px;
+      aspect-ratio: 1;
+      place-items: center;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      color: var(--wine);
+      font-family: var(--serif);
+      font-size: 24px;
+      line-height: 1;
+    }
+    .brand-name { font-family: var(--serif); font-size: 25px; font-weight: 600; letter-spacing: 0; }
+    .brand-sub { margin-top: 1px; color: var(--muted); font-size: 9px; letter-spacing: 0; }
+    .nav-links { display: flex; align-items: center; gap: clamp(20px, 3vw, 42px); font-size: 13px; }
+    .nav-links a:not(.nav-cta) { transition: color .2s ease; }
+    .nav-links a:not(.nav-cta):hover { color: var(--wine); }
+    .nav-cta, .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 45px;
+      padding: 0 22px;
+      border: 1px solid var(--wine);
+      background: var(--wine);
+      color: #fffaf0;
+      cursor: pointer;
+      font-size: 12px;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+    .nav-cta:hover, .button:hover { transform: translateY(-2px); background: var(--wine-deep); }
+
+    .hero {
+      position: relative;
+      display: grid;
+      min-height: min(690px, 78vw);
+      min-height: clamp(570px, 70vw, 720px);
+      overflow: hidden;
+      align-items: center;
+      background: #30221d url("https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=2200&q=88") center 52% / cover no-repeat;
+      color: #fff9ee;
+    }
+    .hero::before {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(28, 19, 17, .87) 0%, rgba(35, 22, 19, .72) 40%, rgba(35, 22, 19, .17) 100%), linear-gradient(0deg, rgba(24, 17, 15, .38), transparent 35%);
+      content: "";
+    }
+    .hero-inner { position: relative; width: min(1120px, 100%); margin: 0 auto; padding: 80px 34px 96px; animation: arrive .8s ease-out both; }
+    .eyebrow { display: flex; align-items: center; gap: 13px; color: #dfc79f; font-size: 11px; letter-spacing: 0; }
+    .eyebrow::before { width: 32px; height: 1px; background: var(--gold); content: ""; }
+    .hero h1 { max-width: 650px; margin: 23px 0 18px; font-family: var(--serif); font-size: clamp(58px, 8vw, 104px); font-weight: 500; line-height: .9; letter-spacing: 0; }
+    .hero h1 span { display: block; margin-top: 8px; color: #e4c997; font-family: var(--korean); font-size: clamp(25px, 3.3vw, 38px); font-weight: 500; line-height: 1.5; }
+    .hero-copy { max-width: 420px; margin: 24px 0 32px; color: rgba(255, 249, 238, .83); font-size: 14px; line-height: 2; word-break: keep-all; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
+    .button.button-light { border-color: #e2c99a; background: #e2c99a; color: #2c211c; }
+    .button.button-light:hover { background: #f0dfbd; }
+    .text-link { padding: 10px 0; border-bottom: 1px solid rgba(255, 249, 238, .55); font-size: 12px; }
+    .hero-note { position: absolute; right: clamp(24px, 7vw, 100px); bottom: 40px; color: rgba(255, 249, 238, .82); font-family: var(--serif); font-size: 14px; letter-spacing: 0; }
+
+    .intro { padding: 89px 24px 92px; text-align: center; }
+    .section-kicker { color: var(--wine); font-family: var(--serif); font-size: 15px; font-style: italic; letter-spacing: 0; }
+    .ornament { display: flex; align-items: center; justify-content: center; gap: 11px; margin: 14px auto 18px; color: var(--gold); font-family: var(--serif); font-size: 18px; }
+    .ornament::before, .ornament::after { width: 45px; height: 1px; background: #c9b797; content: ""; }
+    .intro h2, .section-heading h2 { margin: 0; font-size: 28px; font-weight: 500; }
+    .intro p { max-width: 590px; margin: 16px auto 0; color: var(--muted); font-size: 13px; line-height: 2.1; word-break: keep-all; }
+
+    .menu-section { padding: 77px 24px 96px; background: var(--paper-light); }
+    .section-heading { max-width: 1120px; margin: 0 auto 33px; text-align: center; }
+    .section-heading h2 { margin-top: 9px; }
+    .filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 0 auto 33px; }
+    .filter-button { min-height: 37px; padding: 0 16px; border: 1px solid #d5c9b6; background: transparent; color: #65584b; cursor: pointer; font-size: 11px; transition: .2s ease; }
+    .filter-button:hover, .filter-button[aria-pressed="true"] { border-color: var(--wine); background: var(--wine); color: white; }
+    .menu-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 21px; width: min(1120px, 100%); margin: 0 auto; }
+    .menu-card { overflow: hidden; border: 1px solid #e3d9c8; background: #fffdf8; animation: reveal .45s ease both; }
+    .menu-card[hidden] { display: none; }
+    .menu-image { display: block; width: 100%; aspect-ratio: 1.48; object-fit: cover; background: #dfd1bd; }
+    .menu-info { padding: 17px 19px 19px; }
+    .menu-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+    .menu-meta h3 { margin: 0; font-size: 16px; font-weight: 600; }
+    .price { flex: 0 0 auto; color: var(--wine); font-family: var(--serif); font-size: 21px; font-weight: 600; }
+    .menu-info p { min-height: 42px; margin: 9px 0 0; color: var(--muted); font-size: 11px; line-height: 1.9; word-break: keep-all; }
+    .menu-tag { display: inline-block; margin-top: 10px; color: var(--gold); font-size: 9px; }
+
+    .salon { display: grid; grid-template-columns: 1fr 1fr; min-height: 430px; background: var(--wine-deep); color: #fff8eb; }
+    .salon-image { min-height: 360px; background: url("https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1200&q=85") center / cover no-repeat; }
+    .salon-copy { display: flex; flex-direction: column; justify-content: center; padding: 65px clamp(32px, 7vw, 110px); }
+    .salon-copy .section-kicker { color: #dfc79f; }
+    .salon-copy h2 { margin: 12px 0 16px; font-size: 27px; font-weight: 500; line-height: 1.65; word-break: keep-all; }
+    .salon-copy p { max-width: 440px; margin: 0; color: rgba(255, 248, 235, .75); font-size: 12px; line-height: 2.1; word-break: keep-all; }
+    .salon-copy .button { align-self: flex-start; margin-top: 25px; border-color: #d3b77f; background: transparent; color: #f0dfbd; }
+    .salon-copy .button:hover { background: #d3b77f; color: var(--wine-deep); }
+
+    .visit { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 26px; width: min(1120px, 100%); margin: 0 auto; padding: 72px 24px 76px; }
+    .visit-block { padding-right: 20px; border-right: 1px solid #d8cbb8; }
+    .visit-block:last-child { padding-right: 0; border: 0; }
+    .visit h3 { margin: 0 0 16px; color: var(--wine); font-family: var(--serif); font-size: 20px; font-weight: 600; }
+    .visit p { margin: 6px 0; color: var(--muted); font-size: 12px; line-height: 1.9; }
+    .footer { display: flex; justify-content: space-between; gap: 20px; padding: 21px clamp(24px, 7vw, 104px); background: #211917; color: #d6cbbb; font-size: 10px; }
+    .footer-brand { color: #ead9b9; font-family: var(--serif); font-size: 15px; }
+
+    .modal-backdrop { position: fixed; z-index: 10; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(24, 17, 15, .72); }
+    .modal-backdrop[hidden] { display: none; }
+    .reservation-modal { position: relative; width: min(460px, 100%); padding: 34px; border: 1px solid #c5a873; background: var(--paper-light); box-shadow: 0 20px 70px rgba(0,0,0,.25); }
+    .modal-close { position: absolute; top: 12px; right: 15px; padding: 5px 9px; border: 0; background: transparent; color: var(--wine); cursor: pointer; font-size: 22px; }
+    .reservation-modal h2 { margin: 0; font-size: 23px; font-weight: 500; }
+    .reservation-modal > p { margin: 8px 0 22px; color: var(--muted); font-size: 12px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .reservation-modal label { display: block; margin: 12px 0 6px; color: #594c40; font-size: 11px; }
+    .reservation-modal input, .reservation-modal select { width: 100%; min-height: 43px; padding: 0 11px; border: 1px solid #d7cbb8; border-radius: 0; background: #fffdf8; color: var(--ink); font-size: 12px; }
+    .reservation-modal .button { width: 100%; margin-top: 20px; }
+    .form-message { min-height: 18px; margin: 12px 0 0; color: var(--wine); font-size: 11px; text-align: center; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; clip-path: inset(50%); }
+
+    @keyframes arrive { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 760px) {
+      .site-header { min-height: 74px; padding: 13px 20px; }
+      .brand-mark { width: 38px; }
+      .brand-name { font-size: 22px; }
+      .nav-links { gap: 14px; }
+      .nav-links > a:not(.nav-cta) { display: none; }
+      .nav-cta { min-height: 40px; padding: 0 14px; font-size: 11px; }
+      .hero { min-height: 590px; background-position: 59% center; }
+      .hero::before { background: linear-gradient(90deg, rgba(28,19,17,.83), rgba(35,22,19,.47)), linear-gradient(0deg, rgba(24,17,15,.4), transparent 50%); }
+      .hero-inner { padding: 70px 26px 95px; }
+      .hero h1 { font-size: clamp(58px, 15vw, 82px); }
+      .hero-copy { max-width: 360px; font-size: 13px; }
+      .hero-note { right: 24px; bottom: 22px; font-size: 12px; }
+      .intro { padding: 68px 24px; }
+      .intro h2, .section-heading h2 { font-size: 23px; }
+      .menu-section { padding: 63px 18px 70px; }
+      .menu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .menu-info { padding: 13px; }
+      .menu-meta h3 { font-size: 13px; }
+      .price { font-size: 18px; }
+      .menu-info p { min-height: 58px; font-size: 10px; }
+      .salon { grid-template-columns: 1fr; }
+      .salon-image { min-height: 280px; }
+      .salon-copy { padding: 43px 27px 48px; }
+      .visit { grid-template-columns: 1fr 1fr; gap: 27px 18px; padding: 55px 25px; }
+      .visit-block:first-child { grid-column: 1 / -1; }
+      .visit-block:nth-child(2) { border-right: 0; }
+      .footer { flex-direction: column; gap: 8px; padding: 20px 25px; }
+    }
+    @media (max-width: 420px) {
+      .brand-sub { font-size: 8px; }
+      .hero { min-height: 555px; }
+      .hero-actions { gap: 15px; }
+      .button { padding: 0 16px; }
+      .filters { gap: 6px; }
+      .filter-button { min-height: 34px; padding: 0 11px; font-size: 10px; }
+      .menu-grid { gap: 9px; }
+      .menu-info { padding: 11px; }
+      .menu-meta { align-items: flex-start; flex-direction: column; gap: 1px; }
+      .menu-meta h3 { font-size: 13px; }
+      .menu-info p { min-height: 75px; }
+      .reservation-modal { padding: 29px 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="카페 벨로라 홈">
+      <span class="brand-mark" aria-hidden="true">V</span>
+      <span><span class="brand-name">Café Bellora</span><span class="brand-sub">A SALON FOR SLOW HOURS</span></span>
+    </a>
+    <nav class="nav-links" aria-label="주요 메뉴">
+      <a href="#story">벨로라 이야기</a>
+      <a href="#menu">메뉴</a>
+      <a href="#visit">오시는 길</a>
+      <a class="nav-cta" href="#reservation" data-open-reservation>자리 예약</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div class="eyebrow">A LITTLE SALON IN THE CITY</div>
+        <h1 id="hero-title">Café<br>Bellora<span>오래된 아름다움, 오늘의 한 잔</span></h1>
+        <p class="hero-copy">금빛 오후가 머무는 작은 살롱. 정성스레 내린 커피와 구움과자, 그리고 서두르지 않아도 좋은 시간을 준비했습니다.</p>
+        <div class="hero-actions">
+          <a class="button button-light" href="#menu">메뉴 둘러보기</a>
+          <a class="text-link" href="#story">벨로라의 이야기 <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <div class="hero-note">Est. in the golden hour · Seoul</div>
+    </section>
+
+    <section class="intro" id="story">
+      <div class="section-kicker">Benvenuti a Bellora</div>
+      <div class="ornament" aria-hidden="true">❧</div>
+      <h2>조금 느리게, 조금 더 우아하게</h2>
+      <p>벨로라는 오래된 유럽의 살롱에서 영감을 얻었습니다. 손으로 고른 원두, 계절을 담은 디저트, 잔잔히 흐르는 음악까지. 하루의 한 페이지를 잠시 덮고 당신만의 시간을 펼쳐보세요.</p>
+    </section>
+
+    <section class="menu-section" id="menu" aria-labelledby="menu-title">
+      <div class="section-heading">
+        <div class="section-kicker">From our little kitchen</div>
+        <div class="ornament" aria-hidden="true">❧</div>
+        <h2 id="menu-title">벨로라의 메뉴</h2>
+      </div>
+      <div class="filters" role="group" aria-label="메뉴 종류 선택">
+        <button class="filter-button" type="button" data-filter="all" aria-pressed="true">모두 보기</button>
+        <button class="filter-button" type="button" data-filter="coffee" aria-pressed="false">커피</button>
+        <button class="filter-button" type="button" data-filter="tea" aria-pressed="false">티 & 음료</button>
+        <button class="filter-button" type="button" data-filter="dessert" aria-pressed="false">디저트</button>
+      </div>
+      <div class="menu-grid">
+        <article class="menu-card" data-category="coffee">
+          <img class="menu-image" src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&w=900&q=82" alt="크레마가 풍성한 에스프레소 한 잔" loading="lazy">
+          <div class="menu-info"><div class="menu-meta"><h3>살롱 에스프레소</h3><span class="price">₩5,000</span></div><p>다크 초콜릿과 볶은 헤이즐넛의 깊고 부드러운 여운.</p><span class="menu-tag">HOUSE BLEND</span></div>
+        </article>
+        <article class="menu-card" data-category="coffee">
+          <img class="menu-image" src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=900&q=82" alt="우유 거품을 올린 카페 라테" loading="lazy">
+          <div class="menu-info"><div class="menu-meta"><h3>벨로라 라테</h3><span class="price">₩6,500</span></div><p>고소한 우유와 하우스 블렌드가 만나는 부드러운 한 잔.</p><span class="menu-tag">SIGNATURE</span></div>
+        </article>
+        <article class="menu-card" data-category="tea">
+          <img class="menu-image" src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=900&q=82" alt="따뜻하게 우려낸 홍차와 찻잔" loading="lazy">
+          <div class="menu-info"><div class="menu-meta"><h3>얼그레이 로열</h3><span class="price">₩7,000</span></div><p>베르가못 향을 머금은 홍차에 따뜻한 우유를 곁들여.</p><span class="menu-tag">LOOSE LEAF TEA</span></div>
+        </article>
+        <article class="menu-card" data-category="dessert">
+          <img class="menu-image" src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=82" alt="제철 과일과 크림을 곁들인 디저트" loading="lazy">
+          <div class="menu-info"><div class="menu-meta"><h3>바닐라 밀푀유</h3><span class="price">₩8,500</span></div><p>바삭한 페이스트리 사이사이, 마다가스카르 바닐라 크림.</p><span class="menu-tag">BAKED IN HOUSE</span></div>
+        </article>
+        <article class="menu-card" data-category="dessert">
+          <img class="menu-image" src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=82" alt="진한 초콜릿 크림을 올린 케이크" loading="lazy">
+          <div class="menu-info"><div class="menu-meta"><h3>다크 초콜릿 타르트</h3><span class="price">₩9,000</span></div><p>프랑스산 카카오의 쌉싸름함과 소금 한 꼬집의 조화.</p><span class="menu-tag">SEASONAL FAVORITE</span></div>
+        </article>
+        <article class="menu-card" data-category="tea">
+          <img class="menu-image" src="https://images.unsplash.com/photo-1513558161293-cdab765cacc7?auto=format&fit=crop&w=900&q=82" alt="레몬과 허브를 띄운 상큼한 차" loading="lazy">
+          <div class="menu-info"><div class="menu-meta"><h3>레몬 로즈마리 소다</h3><span class="price">₩7,500</span></div><p>직접 만든 레몬 시럽에 향긋한 로즈마리와 탄산을 더해.</p><span class="menu-tag">HOUSE-MADE</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="salon" aria-labelledby="salon-title">
+      <div class="salon-image" role="img" aria-label="따뜻한 빛이 드는 고전적인 카페 실내"></div>
+      <div class="salon-copy">
+        <div class="section-kicker">A room of your own</div>
+        <h2 id="salon-title">나만의 장면이<br>시작되는 곳</h2>
+        <p>오래된 샹들리에 아래, 창가의 두 자리. 혼자만의 독서도 다정한 대화도 편안히 머물 수 있도록 벨로라의 문을 열어두었습니다.</p>
+        <button class="button" type="button" data-open-reservation>살롱 자리 예약하기</button>
+      </div>
+    </section>
+
+    <section class="visit" id="visit" aria-label="매장 정보">
+      <div class="visit-block"><h3>Visit Bellora</h3><p>서울 종로구 서순라길 28, 벨로라 하우스 1층</p><p>종로3가역 7번 출구에서 도보 6분</p></div>
+      <div class="visit-block"><h3>Hours</h3><p>매일 11:00 – 21:00</p><p>라스트 오더 20:30 · 매월 첫째 월요일 휴무</p></div>
+      <div class="visit-block"><h3>Say hello</h3><p><a href="tel:02-742-1928">02-742-1928</a></p><p><a href="mailto:hello@cafebellora.kr">hello@cafebellora.kr</a></p></div>
+    </section>
+  </main>
+
+  <footer class="footer"><span class="footer-brand">Café Bellora</span><span>© <span id="year"></span> Café Bellora. A little time, just for you.</span></footer>
+
+  <div class="modal-backdrop" id="reservation" hidden>
+    <section class="reservation-modal" role="dialog" aria-modal="true" aria-labelledby="reservation-title">
+      <button class="modal-close" type="button" aria-label="예약 창 닫기">×</button>
+      <div class="section-kicker">Your table awaits</div>
+      <h2 id="reservation-title">살롱 자리 예약</h2>
+      <p>방문하실 날짜와 인원을 알려주세요.</p>
+      <form id="reservation-form">
+        <label for="guest-name">예약자 성함</label>
+        <input id="guest-name" name="name" autocomplete="name" required placeholder="성함을 입력해 주세요">
+        <div class="form-row">
+          <div><label for="visit-date">방문 날짜</label><input id="visit-date" name="date" type="date" required></div>
+          <div><label for="guest-count">인원</label><select id="guest-count" name="guests"><option>1명</option><option selected>2명</option><option>3명</option><option>4명</option></select></div>
+        </div>
+        <button class="button" type="submit">예약 요청하기</button>
+        <p class="form-message" id="form-message" aria-live="polite"></p>
+      </form>
+    </section>
+  </div>
+
+  <script>
+    const filterButtons = document.querySelectorAll(".filter-button");
+    const menuCards = document.querySelectorAll(".menu-card");
+    const modal = document.querySelector(".modal-backdrop");
+    const closeButton = document.querySelector(".modal-close");
+    const nameInput = document.querySelector("#guest-name");
+
+    document.querySelector("#year").textContent = new Date().getFullYear();
+    document.querySelector("#visit-date").min = new Date().toISOString().slice(0, 10);
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const selectedCategory = button.dataset.filter;
+        filterButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+        menuCards.forEach((card) => {
+          card.hidden = selectedCategory !== "all" && card.dataset.category !== selectedCategory;
+        });
+      });
+    });
+
+    function openReservation() {
+      modal.hidden = false;
+      document.body.style.overflow = "hidden";
+      nameInput.focus();
+    }
+
+    function closeReservation() {
+      modal.hidden = true;
+      document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll("[data-open-reservation]").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        openReservation();
+      });
+    });
+    closeButton.addEventListener("click", closeReservation);
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeReservation();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !modal.hidden) closeReservation();
+    });
+
+    document.querySelector("#reservation-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const guestName = nameInput.value.trim();
+      const visitDate = document.querySelector("#visit-date").value;
+      const guestCount = document.querySelector("#guest-count").value;
+      document.querySelector("#form-message").textContent = `${guestName}님, ${visitDate} ${guestCount} 예약 요청을 확인했어요. 전화로 최종 예약을 도와드릴게요.`;
+      event.currentTarget.reset();
+      document.querySelector("#visit-date").min = new Date().toISOString().slice(0, 10);
+    });
+  </script>
+</body>
+</html>
